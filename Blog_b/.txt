@@ -1,0 +1,11 @@
+Signup/Login → http://localhost:5000/api/auth/signup / login
+
+Home page → http://localhost:5000/api/posts
+
+Profile page → http://localhost:5000/api/profile/posts
+
+Create Post → http://localhost:5000/api/posts
+
+Like/Dislike → http://localhost:5000/api/posts/:id/like / dislike
+
+Comments → http://localhost:5000/api/posts/:id/comment

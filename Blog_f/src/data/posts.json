@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "author": "Vivek Sharma",
+    "topic": "React Basics",
+    "content": "React ek JavaScript library hai jo UI banane ke liye use hoti hai.",
+    "likes": 10,
+    "dislikes": 2,
+    "comments": 5
+  },
+  {
+    "id": 2,
+    "author": "Anjali Verma",
+    "topic": "Node.js Intro",
+    "content": "Node.js ek runtime environment hai jo JavaScript ko server side par chalata hai.",
+    "likes": 7,
+    "dislikes": 1,
+    "comments": 3
+  }
+]
