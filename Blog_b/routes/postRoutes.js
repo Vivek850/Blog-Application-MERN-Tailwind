@@ -1,7 +1,7 @@
 const express = require("express");
-const Post = require("../models/Post");
-const User = require("../models/User"); 
-const postController = require("../controllers/postController");
+const Post = require("../Models/Post");
+const User = require("../Models/User"); 
+const postController = require("../Controllers/postController");
 
 const {
   createPost,
