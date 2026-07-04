@@ -37,8 +37,8 @@ exports.getAllPostsPublic = async (req, res) => {
     ...post.toObject(),
     likesCount: post.likes.length,
     dislikesCount: post.dislikes.length,
-    liked: false,       // ✅ guest ke liye hamesha false
-    disliked: false,    // ✅ guest ke liye hamesha false
+    liked: false,       //  guest ke liye hamesha false
+    disliked: false,    //  guest ke liye hamesha false
     commentsCount: post.comments.length
   }));
 
@@ -146,7 +146,7 @@ exports.commentPost = async (req, res) => {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ message: "Post not found" });
 
-    // ✅ ObjectId cast karo
+    //  ObjectId cast karo
     post.comments.push({
       user: req.user._id,
       text: req.body.text

@@ -23,7 +23,7 @@ router.post("/posts", authMiddleware, createPost);
 router.get("/posts", authMiddleware, postController.getAllPosts); // Home page
 router.get("/profile/posts", authMiddleware, getUserPosts); // Profile page
 
-// ✅ Use controller functions here
+//  Use controller functions here
 router.put("/posts/:id/like", authMiddleware, likePost);
 router.put("/posts/:id/dislike", authMiddleware, dislikePost);
 
@@ -54,14 +54,14 @@ router.get("/users/:id", authMiddleware, async (req, res) => {
 // Get posts by author id
 router.get("/author/:id", authMiddleware, async (req, res) => {
   try {
-    const authorId = req.params.id; // ✅ URL se author id lo
+    const authorId = req.params.id; //  URL se author id lo
 
-    const posts = await Post.find({ createdBy: authorId })   // ✅ yahan authorId use karo
+    const posts = await Post.find({ createdBy: authorId })   //  yahan authorId use karo
       .sort({ createdAt: -1 })
       .populate("createdBy", "name _id")
       .populate("comments.user", "name _id");
 
-    const userId = req.user._id.toString(); // ✅ current logged-in user id
+    const userId = req.user._id.toString(); //  current logged-in user id
 
     const updatedPosts = posts.map(post => ({
       ...post.toObject(),
@@ -72,7 +72,7 @@ router.get("/author/:id", authMiddleware, async (req, res) => {
       commentsCount: post.comments.length
     }));
 
-    // ✅ response me author info + posts bhejo
+    //  response me author info + posts bhejo
     res.json({
       author: posts.length > 0 ? posts[0].createdBy : { _id: authorId }, 
       posts: updatedPosts
@@ -91,7 +91,7 @@ router.delete("/posts/:id", authMiddleware, async (req, res) => {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    // ✅ Ensure only the creator can delete
+    //  Ensure only the creator can delete
     if (post.createdBy.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: "Not authorized to delete this post" });
     }
@@ -113,13 +113,13 @@ router.delete("/posts/:postId/comments/:commentId", authMiddleware, async (req, 
     .populate("comments.user", "name _id")
     if (!post) return res.status(404).json({ message: "Post not found" });
 
-    // ✅ Find comment manually
+    //  Find comment manually
     const commentIndex = post.comments.findIndex(c => c._id.toString() === commentId);
     if (commentIndex === -1) return res.status(404).json({ message: "Comment not found" });
 
     const comment = post.comments[commentIndex];
 
-    // ✅ Allow post owner OR comment owner
+    //  Allow post owner OR comment owner
     if (post.createdBy.toString() === userId || (comment.user && comment.user._id.toString() === userId)) {
       post.comments.splice(commentIndex, 1); // remove comment
       await post.save();

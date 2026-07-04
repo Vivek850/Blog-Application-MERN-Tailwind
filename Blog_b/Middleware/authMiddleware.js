@@ -13,7 +13,7 @@ const authMiddleware = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, "secretKey"); // 👈 same secretKey jo login me use kiya
+    const decoded = jwt.verify(token, "secretKey"); //  same secretKey jo login me use kiya
     const user = await User.findById(decoded.id);
     if (!user) {
       return res.status(401).json({ message: "User not found" });
