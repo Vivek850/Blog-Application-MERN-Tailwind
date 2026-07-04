@@ -11,17 +11,17 @@ function SettingsPage() {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("token");
-      const isGuest = localStorage.getItem("guest") === "true"; // ✅ guest flag check
+      const isGuest = localStorage.getItem("guest") === "true"; //  guest flag check
 
       if (isGuest) {
-        // ✅ Guest logout: just clear flag and redirect
+        //  Guest logout: just clear flag and redirect
         localStorage.removeItem("guest");
         console.log("Guest logged out");
         navigate("/login");
         return;
       }
 
-      // ✅ Normal user logout
+      //  Normal user logout
       await axios.post(
         "http://localhost:5000/api/auth/logout",
         {},

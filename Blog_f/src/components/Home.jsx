@@ -17,7 +17,7 @@ useEffect(() => {
       // const isGuest = localStorage.getItem("guest") === "true";
       const isGuest = !token;
 
-      // ✅ Guest ke liye public route, logged‑in ke liye protected route
+      //  Guest ke liye public route, logged‑in ke liye protected route
       const url = isGuest
         ? "http://localhost:5000/api/posts/public"
         : "http://localhost:5000/api/posts";
@@ -68,7 +68,7 @@ useEffect(() => {
           isOpen={isPopupOpen}
           onClose={() => setIsPopupOpen(false)}
           onSubmit={(newPost) => setPosts((prev) => [newPost, ...prev])}
-          isProfilePage={false} // ✅ new post shows instantly
+          isProfilePage={false} //  new post shows instantly
         />
       )}
 

@@ -38,11 +38,11 @@ export default function Comment({ post, onClose, setPosts }) {
         }
       );
 
-      // ✅ Update local comments immediately
+      //  Update local comments immediately
       setComments(res.data.comments);
       setCommentText("");
 
-      // ✅ Update parent posts list (so count updates without refresh)
+      //  Update parent posts list (so count updates without refresh)
       if (setPosts) {
         setPosts(prevPosts =>
           prevPosts.map(p =>
@@ -65,10 +65,10 @@ const handleDeleteComment = async (commentId) => {
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
-    // ✅ Update local comments immediately
+    //  Update local comments immediately
     setComments(res.data.comments);
 
-    // ✅ Update parent posts list (so count updates without refresh)
+    //  Update parent posts list (so count updates without refresh)
     if (setPosts) {
       setPosts(prevPosts =>
         prevPosts.map(p =>

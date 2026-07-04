@@ -19,8 +19,8 @@ export default function PostCard({ post, setPosts, isProfilePage = false }) {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
-  // const isGuest = "!token"; // ✅ Guest flag check
-  const isGuest = localStorage.getItem("guest") === "true"; // ✅ Guest flag check
+  // const isGuest = "!token"; //  Guest flag check
+  const isGuest = localStorage.getItem("guest") === "true"; //  Guest flag check
 
   useEffect(() => {
     setLikes(post.likesCount ?? 0);
@@ -30,7 +30,7 @@ export default function PostCard({ post, setPosts, isProfilePage = false }) {
   }, [post]);
 
   const handleLike = async () => {
-    if (isGuest) return navigate("/login"); // ✅ redirect guest
+    if (isGuest) return navigate("/login"); //  redirect guest
     try {
       const res = await axios.put(
         `http://localhost:5000/api/posts/${post._id}/like`,
@@ -62,7 +62,7 @@ export default function PostCard({ post, setPosts, isProfilePage = false }) {
   };
 
   const handleDislike = async () => {
-    if (isGuest) return navigate("/login"); // ✅ redirect guest
+    if (isGuest) return navigate("/login"); //  redirect guest
     try {
       const res = await axios.put(
         `http://localhost:5000/api/posts/${post._id}/dislike`,
@@ -156,7 +156,7 @@ export default function PostCard({ post, setPosts, isProfilePage = false }) {
         <span
           className="flex items-center gap-1 cursor-pointer"
           onClick={() => {
-            if (isGuest) return navigate("/login"); // ✅ redirect guest
+            if (isGuest) return navigate("/login"); //  redirect guest
             setIsCommentOpen(true);
           }}
         >

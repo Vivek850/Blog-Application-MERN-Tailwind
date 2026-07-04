@@ -55,7 +55,7 @@ function ProfilePage() {
         <div className="space-y-4 text-left">
           {blogs.length > 0 ? (
             blogs.map((blog) => (
-              // 👇 अब हर blog को PostCard से render करेंगे
+              //  now every one blog can render PostCard  
               <PostCard
                 key={blog._id}
                 post={blog}

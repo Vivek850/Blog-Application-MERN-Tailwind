@@ -8,7 +8,7 @@ function Author() {
   const { darkMode, font } = useContext(ThemeContext);
   const [blogs, setBlogs] = useState([]);
   const [author, setAuthor] = useState(null);
-  const { id } = useParams(); // 👈 route param
+  const { id } = useParams(); //  route param
 
   useEffect(() => {
     const fetchAuthorPosts = async () => {
@@ -20,11 +20,11 @@ function Author() {
           // withCredentials: true,
         });
 
-        setAuthor(res.data.author?.name || "Unknown"); // ✅ backend se user info
-        setBlogs(res.data.posts); // ✅ posts list
+        setAuthor(res.data.author?.name || "Unknown"); //  backend se user info
+        setBlogs(res.data.posts); //  posts list
         // setBlogs(res.data);
         if (res.data.length > 0) {
-          setAuthor(res.data[0].authorName); // 👈 dynamic author name
+          setAuthor(res.data[0].authorName); //  dynamic author name
         } else {
           const userRes = await axios.get(
             `http://localhost:5000/api/users/${id}`,
