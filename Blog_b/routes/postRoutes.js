@@ -10,8 +10,8 @@ const {
   likePost,
   dislikePost,
   commentPost
-} = require("../controllers/postController");
-const authMiddleware = require("../middleware/authMiddleware");
+} = require("../Controllers/postController");
+const authMiddleware = require("../Middleware/authMiddleware");
 
 const router = express.Router();
 
