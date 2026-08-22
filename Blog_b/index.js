@@ -3,6 +3,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { connectToMongoDB } = require("./connection");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 
 
 
@@ -14,7 +15,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // MongoDB Connection
-connectToMongoDB("mongodb://127.0.0.1:27017/blogApp");
+connectToMongoDB(process.env.MONGO_URI).then(() => {
+  console.log("Connected to MongoDB");
+}).catch((error) => {
+  console.error("Error connecting to MongoDB:", error);
+  process.exit(1); // Exit the process with an error code
+});
 
 // Middleware
 app.use(cors({
