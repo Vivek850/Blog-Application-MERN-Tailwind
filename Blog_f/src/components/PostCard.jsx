@@ -6,6 +6,7 @@ import Comment from "./Comment";
 import { MdDelete } from "react-icons/md";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import api from "../api";
 
 const user = JSON.parse(localStorage.getItem("user"));
 const currentUserId = user?.id || user?._id;
@@ -32,11 +33,16 @@ export default function PostCard({ post, setPosts, isProfilePage = false }) {
   const handleLike = async () => {
     if (isGuest) return navigate("/login"); //  redirect guest
     try {
-      const res = await axios.put(
-        `http://localhost:5000/api/posts/${post._id}/like`,
+      const res = await api.put(
+        `/posts/${post._id}/like`,
         {},
         { headers: { Authorization: `Bearer ${token}` } },
       );
+      // const res = await axios.put(
+      //   `http://localhost:5000/api/posts/${post._id}/like`,
+      //   {},
+      //   { headers: { Authorization: `Bearer ${token}` } },
+      // );
       setLikes(res.data.likesCount);
       setDislikes(res.data.dislikesCount);
       setLiked(res.data.liked);
@@ -64,8 +70,8 @@ export default function PostCard({ post, setPosts, isProfilePage = false }) {
   const handleDislike = async () => {
     if (isGuest) return navigate("/login"); //  redirect guest
     try {
-      const res = await axios.put(
-        `http://localhost:5000/api/posts/${post._id}/dislike`,
+      const res = await api.put(
+        `/posts/${post._id}/dislike`,
         {},
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -95,7 +101,7 @@ export default function PostCard({ post, setPosts, isProfilePage = false }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${post._id}`, {
+      await api.delete(`/posts/${post._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

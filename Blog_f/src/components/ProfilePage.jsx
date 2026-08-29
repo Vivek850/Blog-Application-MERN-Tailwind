@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { ThemeContext } from "./ThemeContext";
 import PostCard from "./PostCard"; // 👈 अब PostCard reuse करेंगे
+import api from "../api"
 
 function ProfilePage() {
   const { darkMode, font } = useContext(ThemeContext);
@@ -15,7 +16,7 @@ function ProfilePage() {
         const userData = JSON.parse(localStorage.getItem("user"));
         setUser(userData);
 
-        const res = await axios.get("http://localhost:5000/api/profile/posts", {
+        const res = await api.get("/profile/posts", {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         });

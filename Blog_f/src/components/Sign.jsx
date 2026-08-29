@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import api from "../api";
 
 function SignupPage() {
   const [name, setName] = useState("");
@@ -11,10 +12,14 @@ function SignupPage() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/signup",
+      const res = await api.post(
+        "/auth/signup",
         { name, email, password },
         { withCredentials: true },
+      // const res = await axios.post(
+      //   "http://localhost:5000/api/auth/signup",
+      //   { name, email, password },
+      //   { withCredentials: true },
       );
 
       // token save karo
