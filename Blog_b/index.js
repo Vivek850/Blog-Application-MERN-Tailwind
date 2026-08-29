@@ -24,7 +24,7 @@ connectToMongoDB(process.env.MONGO_URI).then(() => {
 
 // Middleware
 app.use(cors({
-    origin: "http://localhost:5173", // React app URL
+    origin: "https://blog-application-mern-tailwind.vercel.app/", // React app URL
     credentials: true
 }));
 app.use(express.json());
