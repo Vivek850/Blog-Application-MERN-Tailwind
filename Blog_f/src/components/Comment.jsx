@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../api"
 
 export default function Comment({ post, onClose, setPosts }) {
   const [comments, setComments] = useState([]);
@@ -12,8 +13,8 @@ export default function Comment({ post, onClose, setPosts }) {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/posts/${post._id}`,
+        const res = await api.get(
+          `/posts/${post._id}`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }
@@ -30,8 +31,8 @@ export default function Comment({ post, onClose, setPosts }) {
   const handleAddComment = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `http://localhost:5000/api/posts/${post._id}/comment`,
+      const res = await api.post(
+        `/posts/${post._id}/comment`,
         { text: commentText },
         {
           headers: { Authorization: `Bearer ${token}` }

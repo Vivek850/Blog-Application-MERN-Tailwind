@@ -4,11 +4,13 @@ import PostCard from "./PostCard";
 import PostPopup from "./PostPopup";
 import { ThemeContext } from "./ThemeContext";
 import { FaPen } from "react-icons/fa";
+import api from "../api"
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const { darkMode, font } = useContext(ThemeContext);
+  
 
 useEffect(() => {
   const fetchPosts = async () => {
@@ -19,10 +21,10 @@ useEffect(() => {
 
       //  Guest ke liye public route, logged‑in ke liye protected route
       const url = isGuest
-        ? "http://localhost:5000/api/posts/public"
-        : "http://localhost:5000/api/posts";
+        ? "/posts/public"
+        : "/posts";
 
-      const res = await axios.get(url, {
+      const res = await api.get(url, {
         headers: !isGuest ? { Authorization: `Bearer ${token}` } : {},
         withCredentials: !isGuest, // guest ke liye unnecessary
       });

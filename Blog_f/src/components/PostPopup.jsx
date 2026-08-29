@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import api from "../api"
 
 function PostPopup({ isOpen, onClose, onSubmit }) {
   const [title, setTitle] = useState("");
@@ -12,8 +13,8 @@ function PostPopup({ isOpen, onClose, onSubmit }) {
     try {
       const token = localStorage.getItem("token"); // login ke time save kiya tha
 
-      const res = await axios.post(
-        "http://localhost:5000/api/posts",
+      const res = await api.post(
+        "/posts",
         { title, content },
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"; // 👈 clicked author id
 import axios from "axios";
 import { ThemeContext } from "./ThemeContext";
 import PostCard from "./PostCard";
+import api from "../api"
 
 function Author() {
   const { darkMode, font } = useContext(ThemeContext);
@@ -14,7 +15,7 @@ function Author() {
     const fetchAuthorPosts = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:5000/api/author/${id}`, {
+        const res = await api.get(`/author/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
           // ,
           // withCredentials: true,
@@ -26,8 +27,8 @@ function Author() {
         if (res.data.length > 0) {
           setAuthor(res.data[0].authorName); //  dynamic author name
         } else {
-          const userRes = await axios.get(
-            `http://localhost:5000/api/users/${id}`,
+          const userRes = await api.get(
+            `/users/${id}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },

@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import api from "../api"
 
 function SettingsPage() {
   const { darkMode, setDarkMode, font, setFont } = useContext(ThemeContext);
@@ -22,8 +23,8 @@ function SettingsPage() {
       }
 
       //  Normal user logout
-      await axios.post(
-        "http://localhost:5000/api/auth/logout",
+      await api.post(
+        "/auth/logout",
         {},
         {
           headers: { Authorization: token },
